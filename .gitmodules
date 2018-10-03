@@ -1,0 +1,6 @@
+[submodule "godot"]
+	path = godot
+	url = https://github.com/godotengine/godot
+[submodule "procedured"]
+	path = procedured
+	url = git@github.com:dlasalle/procedured
