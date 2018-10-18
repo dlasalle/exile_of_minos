@@ -19,7 +19,7 @@ procedured_sources = [
 sources += procedured_sources
 
 env_labyrinth = env.Clone()
-env_labyrinth.Append(CXXCFLAGS=["-O2", "-std=c++11", "-Werror", "-Wall"])
+env_labyrinth.Append(CXXFLAGS=["-O2", "-std=c++11", "-Werror", "-Wall"])
 env_labyrinth.Append(CPPPATH=[procedured_dir + "/include","./"])
 
 if ARGUMENTS.get("labyrinth_shared", "no") == "yes":

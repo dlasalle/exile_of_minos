@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone_block.png-aa7e19e45ae4cd54eb7a44b6c797d5eb.stex"
+path="res://.import/dirt_block.png-b0b25d62887a69796a382525c5529c06.stex"
 
 [deps]
 
-source_file="res://assets/images/stone_block.png"
-dest_files=[ "res://.import/stone_block.png-aa7e19e45ae4cd54eb7a44b6c797d5eb.stex" ]
+source_file="res://assets/images/dirt_block.png"
+dest_files=[ "res://.import/dirt_block.png-b0b25d62887a69796a382525c5529c06.stex" ]
 
 [params]
 
