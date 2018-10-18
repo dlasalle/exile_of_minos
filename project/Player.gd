@@ -23,14 +23,10 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("jump"):
 		self.jump()
-	
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+
 
 func _input(event):
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			self.rotate_y(event.relative.x * MOUSE_SENSITIVITY*-1.0)
 			self.look_up(-event.relative.y * MOUSE_SENSITIVITY)
-	elif event is InputEventMouseButton and event.pressed:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

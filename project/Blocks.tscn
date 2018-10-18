@@ -58,7 +58,7 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_mode = 0
-_sections_unfolded = [ "Albedo", "Depth", "NormalMap" ]
+_sections_unfolded = [ "Albedo", "Ambient Occlusion", "Depth", "NormalMap" ]
 
 [sub_resource type="CubeMesh" id=2]
 
@@ -75,7 +75,7 @@ subdivide_depth = 0
 margin = 0.04
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
 
-[sub_resource type="SpatialMaterial" id=6]
+[sub_resource type="SpatialMaterial" id=4]
 
 render_priority = 0
 flags_transparent = false
@@ -130,11 +130,11 @@ uv2_triplanar = false
 uv2_triplanar_sharpness = 1.0
 proximity_fade_enable = false
 distance_fade_mode = 0
-_sections_unfolded = [ "Albedo", "NormalMap" ]
+_sections_unfolded = [ "Albedo", "Depth", "NormalMap", "albedo_texture" ]
 
-[sub_resource type="CubeMesh" id=7]
+[sub_resource type="CubeMesh" id=5]
 
-material = SubResource( 6 )
+material = SubResource( 4 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
 size = Vector3( 2, 2, 2 )
@@ -142,7 +142,7 @@ subdivide_width = 0
 subdivide_height = 0
 subdivide_depth = 0
 
-[sub_resource type="ConvexPolygonShape" id=8]
+[sub_resource type="ConvexPolygonShape" id=6]
 
 margin = 0.04
 points = PoolVector3Array( -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, 1, -1, -1, 1, -1, 1, -1, -1, -1, 1, 1, 1, -1, 1, -1, 1, 1, -1, -1, 1, 1, 1, -1, 1, -1, -1, -1, 1, -1, -1, -1, -1, 1, 1, 1, 1, -1, -1, 1, -1, 1, 1, 1, -1, 1, 1, 1, -1, -1, -1, -1, -1, 1, -1, 1, -1, -1 )
@@ -187,7 +187,7 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 7 )
+mesh = SubResource( 5 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "material", "mesh" ]
@@ -201,6 +201,6 @@ constant_linear_velocity = Vector3( 0, 0, 0 )
 constant_angular_velocity = Vector3( 0, 0, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="DirtBlock/StaticBody"]
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 disabled = false
 
