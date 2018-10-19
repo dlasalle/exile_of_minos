@@ -1,8 +1,6 @@
 extends PanelContainer
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal sig_next
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,4 +15,6 @@ func set_time(time):
 	var seconds = time - (((hours*60)+minutes)*60)
 	$VBoxContainer/GridContainer/TimeValue.text = "%02d:%02d:%02.1f" % [hours, minutes, seconds]
 
-	set_points(clamp(180-time, 0, 180))
+
+func _on_NextButton_pressed():
+	emit_signal("sig_next")

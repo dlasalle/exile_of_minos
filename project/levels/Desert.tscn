@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/Level.tscn" type="PackedScene" id=1]
+[ext_resource path="res://blocksets/DesertBlocks.meshlib" type="MeshLibrary" id=2]
+
+[node name="Desert" index="0" instance=ExtResource( 1 )]
+floor_height = 1
+wall_height = 2
+border_height = 2
+wall_width = 1
+floor_width = 1
+width = 8
+length = 8
+
+[node name="GridMap" parent="." index="0"]
+mesh_library = ExtResource( 2 )
+data = {
+"cells": PoolIntArray(  )
+}
+_sections_unfolded = [ "Cell", "mesh_library" ]
+

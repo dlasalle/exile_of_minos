@@ -29,11 +29,34 @@ class Maze2D : public Reference
         int y,
         int z);
 
+    void set_floor_height(
+        int height);
+
+    void set_wall_height(
+        int height);
+
+    void set_border_height(
+        int height);
+
+    void set_border_id(
+        int id);
+
+    void set_wall_id(
+        int id);
+
+    void set_floor_id(
+        int id);
+
+    void set_wall_width(
+        int width);
+
+    void set_floor_width(
+        int width);
+
     void build(
         Object * map,
         int width,
-        int length,
-        int wall_id);
+        int length);
 
   protected:
     static void _bind_methods();
@@ -43,6 +66,14 @@ class Maze2D : public Reference
     int m_x_offset;
     int m_y_offset;
     int m_z_offset;
+    int m_floor_height;
+    int m_wall_height;
+    int m_border_height;
+    int m_floor_id;
+    int m_wall_id;
+    int m_border_id;
+    int m_wall_width;
+    int m_floor_width;
 };
 
 #endif

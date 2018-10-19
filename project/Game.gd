@@ -1,19 +1,35 @@
 extends Node
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+const LEVEL_COMPLETION_POINTS = 25
 
-# Called when the node enters the scene tree for the first time.
+var m_seed = 0
+var m_points = 0
+var m_current_level = 0
+
+const LEVELS = [
+	preload("res://levels/Desert.tscn")
+]
+
 func _ready():
 	get_tree().paused = true
 
+func _calc_points(time_left, time_limit):
+	return clamp(time_limit-time_left, 0, time_limit) + LEVEL_COMPLETION_POINTS
 
-func _on_GamePanel_sig_start_game(rseed):
-	$World.start_game(rseed)
+func _start_level():
+	var level = LEVELS[m_current_level].instance()
+	level.generate(m_seed)
+	
+	$World.start_level(level)
+	
 	$GamePanel.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
+
+
+func _on_GamePanel_sig_start_game(rseed):
+	m_seed = rseed
+	_start_level()
 
 
 func _on_World_sig_died():
@@ -23,5 +39,17 @@ func _on_World_sig_died():
 func _on_World_sig_level_finished(time):
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	m_points += _calc_points(time, 180)
 	$FinishPanel.set_time(time)
+	$FinishPanel.set_points(m_points)
 	$FinishPanel.visible = true
+
+
+func _on_FinishPanel_sig_next():
+	m_current_level += 1
+	if m_current_level < len(LEVELS):
+		m_seed += 1
+		_start_level()
+	else:
+		# they win
+		pass

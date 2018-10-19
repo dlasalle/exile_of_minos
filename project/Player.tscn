@@ -83,12 +83,14 @@ move_lock_x = false
 move_lock_y = false
 move_lock_z = false
 collision/safe_margin = 0.001
+display_name = ""
 run_speed = 3.0
 jump_speed = 5.0
 max_look_angle = 1.5708
 air_control = false
 head_node = NodePath("Head")
 script = ExtResource( 1 )
+flour_amount = 50
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -130,4 +132,19 @@ mesh = SubResource( 2 )
 skeleton = NodePath("..")
 material/0 = SubResource( 3 )
 _sections_unfolded = [ "Transform", "material", "mesh" ]
+
+[node name="FlourTimer" type="Timer" parent="."]
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = false
+
+[node name="DownRay" type="RayCast" parent="."]
+enabled = false
+exclude_parent = true
+cast_to = Vector3( 0, -1, 0 )
+collision_mask = 1
+collide_with_areas = false
+collide_with_bodies = true
+_sections_unfolded = [ "Transform" ]
 
