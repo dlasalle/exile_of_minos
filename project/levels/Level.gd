@@ -3,15 +3,20 @@ extends Spatial
 export (int) var floor_id = 0
 export (int) var wall_id = 1
 export (int) var border_id = 1
+export (int) var ceiling_id = 1
 export (int) var floor_height = 1
 export (int) var wall_height = 2
 export (int) var border_height = 2
 export (int) var wall_width = 1
 export (int) var floor_width = 1
+export (bool) var has_ceiling = false
 export (int) var width = 10
 export (int) var length = 10
+export (int) var player_spawn_height = 25
+export (bool) var last = false
 
 const FinishOrb = preload("res://FinishOrb.tscn")
+const FinishBull = preload("res://FinishBull.tscn")
 
 signal sig_finished
 
@@ -39,12 +44,18 @@ func generate(rseed):
 	m2d.set_floor_height(floor_height)
 	m2d.set_floor_width(floor_width)
 	m2d.set_wall_width(wall_width)
+	m2d.set_has_ceiling(has_ceiling)
+	m2d.set_ceiling_id(ceiling_id)
 	
 	m2d.build(grid, width, length)
 
 	# TODO: pick random spot for finish orb
 
-	var finishOrb = FinishOrb.instance()
+	var finishOrb = null
+	if last:
+		finishOrb = FinishBull.instance()
+	else:
+		finishOrb = FinishOrb.instance()
 	finishOrb.name = "Finish"
 	add_child(finishOrb)
 	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, floor_height-1,

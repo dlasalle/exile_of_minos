@@ -38,20 +38,26 @@ class Maze2D : public Reference
     void set_border_height(
         int height);
 
-    void set_border_id(
+    void set_floor_id(
         int id);
 
     void set_wall_id(
         int id);
 
-    void set_floor_id(
+    void set_border_id(
         int id);
+
+    void set_ceiling_id(
+        int id);
+
+    void set_floor_width(
+        int width);
 
     void set_wall_width(
         int width);
 
-    void set_floor_width(
-        int width);
+    void set_has_ceiling(
+        bool has_ceiling);
 
     void build(
         Object * map,
@@ -72,8 +78,10 @@ class Maze2D : public Reference
     int m_floor_id;
     int m_wall_id;
     int m_border_id;
+    int m_ceiling_id;
     int m_wall_width;
     int m_floor_width;
+    bool m_has_ceiling;
 };
 
 #endif

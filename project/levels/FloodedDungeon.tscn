@@ -87,12 +87,12 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "Fog" ]
 
-[sub_resource type="BoxShape" id=6]
+[sub_resource type="BoxShape" id=2]
 
 margin = 0.04
 extents = Vector3( 28, 1, 28 )
 
-[sub_resource type="OpenSimplexNoise" id=2]
+[sub_resource type="OpenSimplexNoise" id=3]
 
 seed = 0
 octaves = 3
@@ -100,17 +100,17 @@ period = 64.0
 persistence = 0.5
 lacunarity = 2.0
 
-[sub_resource type="NoiseTexture" id=3]
+[sub_resource type="NoiseTexture" id=4]
 
 flags = 71
 width = 512
 height = 512
 seamless = true
 as_normalmap = true
-noise = SubResource( 2 )
+noise = SubResource( 3 )
 _sections_unfolded = [ "Flags" ]
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=5]
 
 render_priority = 0
 flags_transparent = false
@@ -154,7 +154,7 @@ emission_on_uv2 = false
 emission_texture = ExtResource( 5 )
 normal_enabled = true
 normal_scale = 1.0
-normal_texture = SubResource( 3 )
+normal_texture = SubResource( 4 )
 rim_enabled = false
 clearcoat_enabled = false
 anisotropy_enabled = false
@@ -176,19 +176,22 @@ proximity_fade_enable = false
 distance_fade_mode = 0
 _sections_unfolded = [ "Albedo", "Emission", "Metallic", "NormalMap", "Roughness", "UV1", "normal_texture", "roughness_texture" ]
 
-[sub_resource type="QuadMesh" id=5]
+[sub_resource type="QuadMesh" id=6]
 
-material = SubResource( 4 )
+material = SubResource( 5 )
 custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
 size = Vector2( 56, 56 )
 
 [node name="FloodedDungeon" instance=ExtResource( 1 )]
 floor_id = 1
+ceiling_id = 1
 floor_height = 4
 wall_height = 1
 border_height = 10
 wall_width = 2
+has_ceiling = true
+player_spawn_height = 10
 
 [node name="GridMap" parent="." index="0"]
 mesh_library = ExtResource( 2 )
@@ -226,7 +229,7 @@ script = ExtResource( 3 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="CollisionShape" type="CollisionShape" parent="Lava" index="0"]
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform", "shape" ]
 
@@ -241,13 +244,13 @@ lod_min_distance = 0.0
 lod_min_hysteresis = 0.0
 lod_max_distance = 0.0
 lod_max_hysteresis = 0.0
-mesh = SubResource( 5 )
+mesh = SubResource( 6 )
 skeleton = NodePath("..")
 material/0 = null
 _sections_unfolded = [ "Transform", "mesh" ]
 
 [node name="OmniLight" type="OmniLight" parent="." index="3"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 22, 28 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 18, 28 )
 layers = 1
 light_color = Color( 1, 1, 1, 1 )
 light_energy = 1.0
@@ -256,7 +259,7 @@ light_negative = false
 light_specular = 0.5
 light_bake_mode = 1
 light_cull_mask = -1
-shadow_enabled = true
+shadow_enabled = false
 shadow_color = Color( 0, 0, 0, 1 )
 shadow_bias = 0.15
 shadow_contact = 0.0
@@ -266,6 +269,6 @@ omni_range = 40.0
 omni_attenuation = 1.0
 omni_shadow_mode = 1
 omni_shadow_detail = 1
-_sections_unfolded = [ "Omni", "Shadow", "Transform" ]
+_sections_unfolded = [ "Light", "Omni", "Shadow", "Transform" ]
 
 [connection signal="body_entered" from="Lava" to="Lava" method="_on_Lava_body_entered"]

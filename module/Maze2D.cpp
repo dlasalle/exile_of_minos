@@ -67,8 +67,10 @@ Maze2D::Maze2D() :
   m_floor_id(0),
   m_wall_id(1),
   m_border_id(2),
+  m_ceiling_id(3),
   m_wall_width(1),
-  m_floor_width(1)
+  m_floor_width(1),
+  m_has_ceiling(false)
 {
   // do nothing
 }
@@ -130,6 +132,12 @@ void Maze2D::set_border_id(
   m_border_id = id;
 }
 
+void Maze2D::set_ceiling_id(
+    int const id)
+{
+  m_ceiling_id = id;
+}
+
 void Maze2D::set_floor_width(
     int const width)
 {
@@ -140,6 +148,13 @@ void Maze2D::set_wall_width(
     int const width)
 {
   m_wall_width = width;
+}
+
+
+void Maze2D::set_has_ceiling(
+    bool p_has_ceiling)
+{
+  m_has_ceiling = p_has_ceiling;
 }
 
 void Maze2D::build(
@@ -237,6 +252,14 @@ void Maze2D::build(
     }
   }
 
+  // fill ceiling 
+  if (m_has_ceiling) {
+    fill(map, m_x_offset-1, m_y_offset-1, m_border_height+m_z_offset, \
+        width*m_floor_width+(width-1)*m_wall_width+2, \
+        length*m_floor_width+(length-1)*m_wall_width+2, \
+        1, m_ceiling_id);
+  }
+
   // fill border 
   int const total_length = (length*m_floor_width)+((length-1)*m_wall_width);
   int const total_width = (width*m_floor_width)+((width-1)*m_wall_width);
@@ -275,11 +298,16 @@ void Maze2D::_bind_methods()
       &Maze2D::set_wall_id);
   ClassDB::bind_method(D_METHOD("set_border_id", "border_id"), \
       &Maze2D::set_border_id);
+  ClassDB::bind_method(D_METHOD("set_ceiling_id", "ceiling_id"), \
+      &Maze2D::set_ceiling_id);
 
   ClassDB::bind_method(D_METHOD("set_wall_width", "wall_width"), \
       &Maze2D::set_wall_width);
   ClassDB::bind_method(D_METHOD("set_floor_width", "floor_width"), \
       &Maze2D::set_floor_width);
+
+  ClassDB::bind_method(D_METHOD("set_has_ceiling", "has_ceiling"), \
+      &Maze2D::set_has_ceiling);
 
   ClassDB::bind_method(D_METHOD("build", "map", "width", "length"), \
       &Maze2D::build);

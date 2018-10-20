@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://hud/PlayerHUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sounds/footsteps.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/sounds/flour_drop.ogg" type="AudioStream" id=4]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -15,8 +17,8 @@ custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
 radius = 0.4
 mid_height = 0.6
-radial_segments = 64
-rings = 8
+radial_segments = 8
+rings = 4
 
 [sub_resource type="SpatialMaterial" id=3]
 
@@ -89,6 +91,7 @@ run_speed = 3.0
 jump_speed = 5.0
 max_look_angle = 1.5708
 air_control = false
+air_resistance = 1.0
 head_node = NodePath("Head")
 script = ExtResource( 1 )
 flour_amount = 50
@@ -115,7 +118,7 @@ current = true
 fov = 70.0
 size = 1.0
 near = 0.05
-far = 100.0
+far = 500.0
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
@@ -151,3 +154,23 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="PlayerHUD" parent="." instance=ExtResource( 2 )]
 
+[node name="FootStepPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = 5.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
+
+[node name="FlourDropPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 10.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
+
+[connection signal="sig_start_run" from="." to="." method="_on_Player_sig_start_run"]
+[connection signal="sig_stop_run" from="." to="." method="_on_Player_sig_stop_run"]

@@ -46,7 +46,7 @@ func _input(event):
 
 func drop_flour():
 	if $FlourTimer.is_stopped() and flour_amount > 0:
-		emit_signal("sig_update", self)
+		$FlourDropPlayer.play()
 		flour_amount -= 1
 		$PlayerHUD.update_quantity("Flour", flour_amount)
 		$FlourTimer.start()
@@ -61,6 +61,10 @@ func drop_flour():
 			f.translate(ray.get_collision_point())
 			f.rotate_y(rand_range(0, PI*2))
 			world.add_child(f)
+		emit_signal("sig_update", self)
+
+func set_time(time):
+	$PlayerHUD.set_time(time)
 
 func add_item(item_name, q):
 	if item_name == "Flour":
@@ -68,3 +72,16 @@ func add_item(item_name, q):
 
 func die():
 	emit_signal("sig_died")
+
+func start_walking():
+	$FootStepPlayer.play()
+
+func stop_walking():
+	$FootStepPlayer.stop()
+
+func _on_Player_sig_start_run():
+	start_walking()
+
+
+func _on_Player_sig_stop_run():
+	stop_walking()

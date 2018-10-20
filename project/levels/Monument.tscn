@@ -105,13 +105,16 @@ adjustment_contrast = 1.0
 adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "background_sky" ]
 
-[node name="Monument" index="0" instance=ExtResource( 1 )]
+[node name="Monument" instance=ExtResource( 1 )]
+ceiling_id = 1
 wall_height = 4
 border_height = 4
 wall_width = 2
 floor_width = 2
+has_ceiling = false
 width = 8
 length = 8
+player_spawn_height = 80
 
 [node name="GridMap" parent="." index="0"]
 mesh_library = ExtResource( 2 )

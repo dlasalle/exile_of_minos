@@ -1,0 +1,18 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/bull.obj-880392d1c2f4db3fd0bf52880290c559.mesh"
+
+[deps]
+
+files=[ "res://.import/bull.obj-880392d1c2f4db3fd0bf52880290c559.mesh" ]
+
+source_file="res://assets/models/bull.obj"
+dest_files=[ "res://.import/bull.obj-880392d1c2f4db3fd0bf52880290c559.mesh", "res://.import/bull.obj-880392d1c2f4db3fd0bf52880290c559.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+optimize_mesh=true

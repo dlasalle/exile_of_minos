@@ -8,8 +8,8 @@ var m_current_level = 0
 
 const LEVELS = [
 	preload("res://levels/Desert.tscn"),
-	preload("res://levels/Monument.tscn"),
-	preload("res://levels/FloodedDungeon.tscn")
+	#preload("res://levels/Monument.tscn"),
+	#preload("res://levels/FloodedDungeon.tscn")
 ]
 
 func _ready():
@@ -21,6 +21,8 @@ func _calc_points(time_left, time_limit):
 
 func _start_level():
 	var level = LEVELS[m_current_level].instance()
+	if m_current_level + 1 == len(LEVELS):
+		level.last = true
 	level.generate(m_seed)
 	
 	$World.start_level(level)
@@ -34,6 +36,7 @@ func _on_GamePanel_sig_start_game(rseed):
 	m_points = 0
 	m_current_level = 0
 	m_seed = rseed
+	$World.new_game()
 	_start_level()
 
 
