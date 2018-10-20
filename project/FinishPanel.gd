@@ -12,9 +12,11 @@ func set_points(points):
 func set_time(time):
 	var hours = int(time / (60*60))
 	var minutes = int((time/60) - (hours*60))
-	var seconds = time - (((hours*60)+minutes)*60)
-	$VBoxContainer/GridContainer/TimeValue.text = "%02d:%02d:%02.1f" % [hours, minutes, seconds]
+	var seconds = int(time - (((hours*60)+minutes)*60))
+	$VBoxContainer/GridContainer/TimeValue.text = "%02d:%02d:%02d" % [hours, minutes, seconds]
 
+func set_total_points(points):
+	$VBoxContainer/GridContainer/TotalPointsValue.text = "%05d" % points
 
 func _on_NextButton_pressed():
 	emit_signal("sig_next")

@@ -22,5 +22,6 @@ margin_top = -44.0
 margin_bottom = 44.0
 _sections_unfolded = [ "Pause", "Visibility" ]
 
+[connection signal="sig_level_finished" from="World" to="." method="_on_World_sig_level_finished"]
 [connection signal="sig_start_game" from="GamePanel" to="." method="_on_GamePanel_sig_start_game"]
 [connection signal="sig_next" from="FinishPanel" to="." method="_on_FinishPanel_sig_next"]

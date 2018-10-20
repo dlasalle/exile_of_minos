@@ -30,8 +30,9 @@ func _physics_process(delta):
 	m_time += delta
 	var hours = int(m_time / (60*60))
 	var minutes = int((m_time/60) - (hours*60))
-	var seconds = m_time - (((hours*60)+minutes)*60)
-	$Label.text = "%02d:%02d:%02.1f" % [hours, minutes, seconds]
+	var seconds = int(m_time - (((hours*60)+minutes)*60))
+	var fracs = int(10*(m_time - int(m_time)))
+	$TimerValue.text = "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, fracs]
 
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()

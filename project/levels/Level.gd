@@ -31,10 +31,10 @@ func generate(rseed):
 	m2d.set_seed(rseed)
 	m2d.set_wall_height(wall_height)
 	m2d.set_border_height(border_height)
-	m2d.set_floor_id(0)
+	m2d.set_floor_id(1)
 	m2d.set_wall_id(1)
 	m2d.set_border_id(1)
-	m2d.set_floor_height(floor_height)
+	m2d.set_floor_height(floor_height-1)
 	m2d.set_floor_width(floor_width)
 	m2d.set_wall_width(wall_width)
 	
@@ -44,6 +44,6 @@ func generate(rseed):
 
 	var finishOrb = FinishOrb.instance()
 	add_child(finishOrb)
-	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, 0, 
+	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, floor_height, 
 		(length-1)*(floor_width+wall_width)+0.5*floor_width))
 	finishOrb.connect("sig_finished", self, "_on_finish")
