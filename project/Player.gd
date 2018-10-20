@@ -8,6 +8,7 @@ export (int) var flour_amount = 50
 
 
 signal sig_update
+signal sig_died
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -58,5 +59,6 @@ func drop_flour():
 			f.translate(ray.get_collision_point())
 			f.rotate_y(rand_range(0, PI*2))
 			world.add_child(f)
-		
-		
+
+func die():
+	emit_signal("sig_died")

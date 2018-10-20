@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fire.png-3892466d509c95c4c465c7175b24c06a.stex"
+path="res://.import/lava.png-58f2371c82f215d80f5441bd5b154642.stex"
 
 [deps]
 
-source_file="res://assets/images/fire.png"
-dest_files=[ "res://.import/fire.png-3892466d509c95c4c465c7175b24c06a.stex" ]
+source_file="res://assets/images/lava.png"
+dest_files=[ "res://.import/lava.png-58f2371c82f215d80f5441bd5b154642.stex" ]
 
 [params]
 
@@ -16,16 +16,16 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0

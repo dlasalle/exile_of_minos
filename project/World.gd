@@ -13,6 +13,7 @@ var m_player = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	m_player = Player.instance()
+	m_player.connect("sig_died", self, "_on_player_death")
 	add_child(m_player)
 
 
@@ -23,7 +24,7 @@ func start_level(level):
 		remove_child(m_level)
 	m_level = level
 	m_level.connect("sig_finished", self, "_on_finish")
-	m_player.global_transform.origin = Vector3(0.5, 40, 0.5)
+	m_player.global_transform.origin = Vector3(1, 40, 1)
 	add_child(level)
 
 func _physics_process(delta):
@@ -37,6 +38,9 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		get_tree().quit()
 
+func _on_player_death():
+	print("Player death.")
+	emit_signal("sig_died")
 
 func _on_finish():
 	emit_signal("sig_level_finished", m_time)

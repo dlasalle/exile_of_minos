@@ -4,6 +4,13 @@
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
+floor_height = 1
+wall_height = 2
+border_height = 2
+wall_width = 1
+floor_width = 1
+width = 10
+length = 10
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = null

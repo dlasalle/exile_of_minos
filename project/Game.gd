@@ -14,6 +14,7 @@ const LEVELS = [
 
 func _ready():
 	get_tree().paused = true
+	$GamePanel.show()
 
 func _calc_points(time_left, time_limit):
 	return clamp(time_limit-time_left, 0, time_limit) + LEVEL_COMPLETION_POINTS
@@ -30,12 +31,17 @@ func _start_level():
 
 
 func _on_GamePanel_sig_start_game(rseed):
+	m_points = 0
+	m_current_level = 0
 	m_seed = rseed
 	_start_level()
 
 
 func _on_World_sig_died():
-	pass # Replace with function body.
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	get_tree().paused = true
+	$DeathPanel.set_points(m_points)
+	$DeathPanel.visible = true
 
 
 func _on_World_sig_level_finished(time):
@@ -58,3 +64,10 @@ func _on_FinishPanel_sig_next():
 		# they win
 		pass
 	$FinishPanel.visible = false
+
+
+func _on_DeathPanel_sig_ok():
+	$DeathPanel.visible = false
+	get_tree().paused = true
+	$GamePanel.visible = true
+	$GamePanel.show()

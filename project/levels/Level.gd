@@ -44,6 +44,6 @@ func generate(rseed):
 
 	var finishOrb = FinishOrb.instance()
 	add_child(finishOrb)
-	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, floor_height, 
+	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, floor_height-1,
 		(length-1)*(floor_width+wall_width)+0.5*floor_width))
 	finishOrb.connect("sig_finished", self, "_on_finish")

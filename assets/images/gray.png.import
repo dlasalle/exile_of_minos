@@ -2,17 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.s3tc.stex"
-path.etc2="res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.etc2.stex"
+path="res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.stex"
 
 [deps]
 
 source_file="res://assets/images/gray.png"
-dest_files=[ "res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.s3tc.stex", "res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.etc2.stex" ]
+dest_files=[ "res://.import/gray.png-8f9247f850d52bca60d757a3cd21734a.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

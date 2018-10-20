@@ -2,17 +2,16 @@
 
 importer="texture"
 type="StreamTexture"
-path.s3tc="res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.s3tc.stex"
-path.etc2="res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.etc2.stex"
+path="res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.stex"
 
 [deps]
 
 source_file="res://assets/images/flour.png"
-dest_files=[ "res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.s3tc.stex", "res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.etc2.stex" ]
+dest_files=[ "res://.import/flour.png-faddbdea4e8433822bc8a6ef24b1d255.stex" ]
 
 [params]
 
-compress/mode=2
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

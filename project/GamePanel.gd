@@ -8,9 +8,11 @@ func timestamp():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	show()
+
+func show():
 	var rseed = timestamp() % int($VBoxContainer/HBoxContainer/Seed.max_value)
 	$VBoxContainer/HBoxContainer/Seed.value = rseed
-
 
 func _on_StartButton_pressed():
 	var rseed = int($VBoxContainer/HBoxContainer/Seed.value)
