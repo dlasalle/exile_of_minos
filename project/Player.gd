@@ -13,6 +13,7 @@ signal sig_died
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_physics_process(true)
+	$PlayerHUD.update_quantity("Flour", flour_amount)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -47,6 +48,7 @@ func drop_flour():
 	if $FlourTimer.is_stopped() and flour_amount > 0:
 		emit_signal("sig_update", self)
 		flour_amount -= 1
+		$PlayerHUD.update_quantity("Flour", flour_amount)
 		$FlourTimer.start()
 		var f = Flour.instance()
 		
@@ -59,6 +61,10 @@ func drop_flour():
 			f.translate(ray.get_collision_point())
 			f.rotate_y(rand_range(0, PI*2))
 			world.add_child(f)
+
+func add_item(item_name, q):
+	if item_name == "Flour":
+		flour_amount += q
 
 func die():
 	emit_signal("sig_died")

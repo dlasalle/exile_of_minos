@@ -7,8 +7,8 @@ var m_points = 0
 var m_current_level = 0
 
 const LEVELS = [
-	#preload("res://levels/Desert.tscn"),
-	#preload("res://levels/Monument.tscn"),
+	preload("res://levels/Desert.tscn"),
+	preload("res://levels/Monument.tscn"),
 	preload("res://levels/FloodedDungeon.tscn")
 ]
 

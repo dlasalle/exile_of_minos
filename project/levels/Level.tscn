@@ -4,6 +4,9 @@
 
 [node name="Level" type="Spatial"]
 script = ExtResource( 1 )
+floor_id = 0
+wall_id = 1
+border_id = 1
 floor_height = 1
 wall_height = 2
 border_height = 2

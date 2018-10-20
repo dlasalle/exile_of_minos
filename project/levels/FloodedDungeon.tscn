@@ -183,14 +183,12 @@ custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 flip_faces = false
 size = Vector2( 56, 56 )
 
-[node name="FloodedDungeon" index="0" instance=ExtResource( 1 )]
+[node name="FloodedDungeon" instance=ExtResource( 1 )]
+floor_id = 1
 floor_height = 4
 wall_height = 1
 border_height = 10
 wall_width = 2
-floor_width = 1
-width = 10
-length = 10
 
 [node name="GridMap" parent="." index="0"]
 mesh_library = ExtResource( 2 )
