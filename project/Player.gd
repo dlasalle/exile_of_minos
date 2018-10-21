@@ -4,8 +4,8 @@ const MOUSE_SENSITIVITY = 0.001
 
 const Flour = preload("res://Flour.tscn")
 
-export (int) var flour_amount = 0
-export (int) var torch_amount = 0
+export (int) var flour_amount = 10
+export (int) var torch_amount = 1
 
 
 signal sig_update
