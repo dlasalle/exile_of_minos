@@ -5,6 +5,7 @@ const MOUSE_SENSITIVITY = 0.001
 const Flour = preload("res://Flour.tscn")
 
 export (int) var flour_amount = 50
+export (int) var torch_amount = 3
 
 
 signal sig_update
@@ -14,6 +15,7 @@ signal sig_died
 func _ready():
 	set_physics_process(true)
 	$PlayerHUD.update_quantity("Flour", flour_amount)
+	$PlayerHUD.update_quantity("Torch", torch_amount)
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
@@ -35,6 +37,8 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("drop_flour"):
 		drop_flour()
+	if Input.is_action_just_pressed("light_torch"):
+		light_torch()
 
 
 func _input(event):
@@ -63,12 +67,25 @@ func drop_flour():
 			world.add_child(f)
 		emit_signal("sig_update", self)
 
+func light_torch():
+	if $TorchTimer.is_stopped() and torch_amount > 0:
+		$TorchLitPlayer.play()
+		torch_amount -= 1
+		$PlayerHUD.update_quantity("Torch", torch_amount)
+		$TorchTimer.start()
+		$Torchlight.visible = true
+
 func set_time(time):
 	$PlayerHUD.set_time(time)
 
 func add_item(item_name, q):
 	if item_name == "Flour":
 		flour_amount += q
+		$PlayerHUD.update_quantity("Flour", flour_amount)
+	if item_name == "Torch":
+		torch_amount += q
+		$PlayerHUD.update_quantity("Torch", torch_amount)
+
 
 func die():
 	emit_signal("sig_died")
@@ -85,3 +102,8 @@ func _on_Player_sig_start_run():
 
 func _on_Player_sig_stop_run():
 	stop_walking()
+
+
+func _on_TorchTimer_timeout():
+	$Torchlight.visible = false
+	$TorchLitPlayer.stop()

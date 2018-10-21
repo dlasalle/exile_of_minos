@@ -6,8 +6,9 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	for item in $Invectory/HBoxContainer.get_children():
-		item.update_quantity(item.quantity)
+	for container in $Invectory.get_children():
+		for item in container.get_children():
+			item.update_quantity(item.quantity)
 
 func set_time(time):
 	var hours = int(time / (60*60))
@@ -17,7 +18,7 @@ func set_time(time):
 	$Timer.text = "%02d:%02d:%02d.%01d" % [hours, minutes, seconds, fracs]
 
 func update_quantity(item_name, q):
-	var node = $Invectory/HBoxContainer.get_node(item_name)
+	var node = $Invectory.get_node("%sContainer/%s" %[item_name, item_name])
 	node.update_quantity(q)
 	
 	

@@ -7,14 +7,15 @@ var m_points = 0
 var m_current_level = 0
 
 const LEVELS = [
-	preload("res://levels/Desert.tscn"),
+	#preload("res://levels/Desert.tscn"),
 	#preload("res://levels/Monument.tscn"),
-	#preload("res://levels/FloodedDungeon.tscn")
+	#preload("res://levels/FloodedDungeon.tscn"),
+	preload("res://levels/DarkDungeon.tscn")
 ]
 
 func _ready():
 	get_tree().paused = true
-	$GamePanel.show()
+	$IntroScreen.show()
 
 func _calc_points(time_left, time_limit):
 	return clamp(time_limit-time_left, 0, time_limit) + LEVEL_COMPLETION_POINTS
@@ -27,12 +28,12 @@ func _start_level():
 	
 	$World.start_level(level)
 	
-	$GamePanel.visible = false
+	$IntroScreen.visible = false
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	get_tree().paused = false
 
 
-func _on_GamePanel_sig_start_game(rseed):
+func _on_IntroScreen_sig_game_start(rseed):
 	m_points = 0
 	m_current_level = 0
 	m_seed = rseed
@@ -64,13 +65,22 @@ func _on_FinishPanel_sig_next():
 		m_seed += 1
 		_start_level()
 	else:
-		# they win
-		pass
+		$WinScreen.set_points(m_points)
+		$WinScreen.visible = true
 	$FinishPanel.visible = false
 
 
 func _on_DeathPanel_sig_ok():
 	$DeathPanel.visible = false
+	reset()
+
+func reset():
 	get_tree().paused = true
-	$GamePanel.visible = true
-	$GamePanel.show()
+	$IntroScreen.visible = true
+	$IntroScreen.show()
+
+func _on_WinScreen_sig_done():
+	$WinScreen.visible = false
+	reset()
+
+

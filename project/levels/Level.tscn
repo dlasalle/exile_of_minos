@@ -7,13 +7,17 @@ script = ExtResource( 1 )
 floor_id = 0
 wall_id = 1
 border_id = 1
+ceiling_id = 1
 floor_height = 1
 wall_height = 2
 border_height = 2
 wall_width = 1
 floor_width = 1
+has_ceiling = false
 width = 10
 length = 10
+player_spawn_height = 25
+last = false
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = null

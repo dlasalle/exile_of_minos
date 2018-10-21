@@ -1,37 +1,40 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://World.tscn" type="PackedScene" id=2]
-[ext_resource path="res://GamePanel.tscn" type="PackedScene" id=3]
-[ext_resource path="res://FinishPanel.tscn" type="PackedScene" id=4]
-[ext_resource path="res://DeathPanel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://FinishPanel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DeathPanel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://IntroScreen.tscn" type="PackedScene" id=5]
+[ext_resource path="res://WinScreen.tscn" type="PackedScene" id=6]
 
 [node name="Game" type="Node"]
 script = ExtResource( 1 )
 
 [node name="World" parent="." instance=ExtResource( 2 )]
 
-[node name="GamePanel" parent="." instance=ExtResource( 3 )]
-margin_left = -82.5
-margin_top = -31.0
-margin_right = 82.5
-margin_bottom = 31.0
-
-[node name="FinishPanel" parent="." instance=ExtResource( 4 )]
+[node name="FinishPanel" parent="." instance=ExtResource( 3 )]
 visible = false
 margin_top = -44.0
 margin_bottom = 44.0
 _sections_unfolded = [ "Pause", "Visibility" ]
 
-[node name="DeathPanel" parent="." instance=ExtResource( 5 )]
+[node name="DeathPanel" parent="." instance=ExtResource( 4 )]
 pause_mode = 2
 visible = false
 margin_top = -35.0
 margin_bottom = 35.0
 _sections_unfolded = [ "Pause", "Rect", "Size Flags", "Visibility" ]
 
+[node name="IntroScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="WinScreen" parent="." instance=ExtResource( 6 )]
+pause_mode = 2
+visible = false
+_sections_unfolded = [ "Pause", "Visibility" ]
+
 [connection signal="sig_died" from="World" to="." method="_on_World_sig_died"]
 [connection signal="sig_level_finished" from="World" to="." method="_on_World_sig_level_finished"]
-[connection signal="sig_start_game" from="GamePanel" to="." method="_on_GamePanel_sig_start_game"]
 [connection signal="sig_next" from="FinishPanel" to="." method="_on_FinishPanel_sig_next"]
 [connection signal="sig_ok" from="DeathPanel" to="." method="_on_DeathPanel_sig_ok"]
+[connection signal="sig_game_start" from="IntroScreen" to="." method="_on_IntroScreen_sig_game_start"]
+[connection signal="sig_done" from="WinScreen" to="." method="_on_WinScreen_sig_done"]

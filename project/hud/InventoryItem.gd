@@ -10,7 +10,3 @@ func _ready():
 func update_quantity(q):
 	quantity = q
 	$VBoxContainer/HBoxContainer/Quantity.text = "%03d" % quantity
-	if q > 0:
-		self.visible = true
-	else:
-		self.visible = false
