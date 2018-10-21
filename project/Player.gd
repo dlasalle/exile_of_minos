@@ -4,8 +4,8 @@ const MOUSE_SENSITIVITY = 0.001
 
 const Flour = preload("res://Flour.tscn")
 
-export (int) var flour_amount = 50
-export (int) var torch_amount = 3
+export (int) var flour_amount = 0
+export (int) var torch_amount = 0
 
 
 signal sig_update
@@ -85,6 +85,7 @@ func add_item(item_name, q):
 	if item_name == "Torch":
 		torch_amount += q
 		$PlayerHUD.update_quantity("Torch", torch_amount)
+	$PickupPlayer.play()
 
 
 func die():

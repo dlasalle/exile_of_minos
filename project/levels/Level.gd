@@ -18,6 +18,11 @@ export (bool) var last = false
 const FinishOrb = preload("res://FinishOrb.tscn")
 const FinishBull = preload("res://FinishBull.tscn")
 
+const Pickups = [
+	preload("res://pickups/FlourPickup.tscn"),
+	preload("res://pickups/TorchPickup.tscn")
+]
+
 signal sig_finished
 
 func _ready():
@@ -38,7 +43,7 @@ func generate(rseed):
 	m2d.set_seed(rseed)
 	m2d.set_floor_id(floor_id)
 	m2d.set_wall_id(wall_id)
-	m2d.set_border_id(wall_id)
+	m2d.set_border_id(border_id)
 	m2d.set_wall_height(wall_height)
 	m2d.set_border_height(border_height)
 	m2d.set_floor_height(floor_height)
@@ -49,8 +54,7 @@ func generate(rseed):
 	
 	m2d.build(grid, width, length)
 
-	# TODO: pick random spot for finish orb
-
+	# instantiate orb
 	var finishOrb = null
 	if last:
 		finishOrb = FinishBull.instance()
@@ -61,6 +65,20 @@ func generate(rseed):
 	finishOrb.translate(cell_center((width-1)*(floor_width+wall_width)+0.5*floor_width, floor_height-1,
 		(length-1)*(floor_width+wall_width)+0.5*floor_width))
 	finishOrb.connect("sig_finished", self, "_on_finish")
+	
+	# place some pickups
+	for i in range(0, sqrt(width*length)/2):
+		var x = randi() % width
+		var y = randi() % length
+		var pos = cell_center(x*(floor_width+wall_width), floor_height-1, y*(floor_width+wall_width))
+		var pickup_idx = randi() % 3
+		# make flour more likely
+		if pickup_idx == 2:
+			pickup_idx = 0
+		var pickup = Pickups[pickup_idx].instance()
+		add_child(pickup)
+		pickup.translate(pos)
+		
 
 func get_finish():
 	return get_node("Finish")

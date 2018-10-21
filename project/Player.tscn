@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://hud/PlayerHUD.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/sounds/footsteps.ogg" type="AudioStream" id=3]
 [ext_resource path="res://assets/sounds/flour_drop.ogg" type="AudioStream" id=4]
 [ext_resource path="res://assets/sounds/fire.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/sounds/pickup.ogg" type="AudioStream" id=6]
 
 [sub_resource type="CapsuleShape" id=1]
 
@@ -95,8 +96,8 @@ air_control = false
 air_resistance = 1.0
 head_node = NodePath("Head")
 script = ExtResource( 1 )
-flour_amount = 50
-torch_amount = 3
+flour_amount = 0
+torch_amount = 0
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0 )
@@ -167,7 +168,7 @@ bus = "Master"
 
 [node name="FlourDropPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = 10.0
+volume_db = 5.0
 pitch_scale = 1.0
 autoplay = false
 stream_paused = false
@@ -204,7 +205,16 @@ autostart = false
 
 [node name="TorchLitPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = 4.0
+volume_db = 3.0
+pitch_scale = 1.0
+autoplay = false
+stream_paused = false
+mix_target = 0
+bus = "Master"
+
+[node name="PickupPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = 1.0
 pitch_scale = 1.0
 autoplay = false
 stream_paused = false

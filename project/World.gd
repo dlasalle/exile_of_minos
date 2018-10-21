@@ -56,7 +56,6 @@ func _physics_process(delta):
 		get_tree().quit()
 
 func _on_player_death():
-	print("Player death.")
 	emit_signal("sig_died")
 
 func _on_finish():
