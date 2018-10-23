@@ -1,4 +1,4 @@
-extends Actor
+extends GroundActor
 
 const MOUSE_SENSITIVITY = 0.001
 

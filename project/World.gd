@@ -31,6 +31,7 @@ func start_level(level):
 	m_level = level
 	m_level.connect("sig_finished", self, "_on_finish")
 	m_player.global_transform.origin = Vector3(1, m_level.player_spawn_height, 1)
+	m_player.set_velocity(Vector3(0,0,0))
 	add_child(level)
 	
 	# make the player look at the finish

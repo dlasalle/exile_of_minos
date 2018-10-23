@@ -4,3 +4,6 @@
 [submodule "procedured"]
 	path = procedured
 	url = git@github.com:dlasalle/procedured
+[submodule "thespian"]
+	path = thespian
+	url = https://github.com/dlasalle/thespian

@@ -9,5 +9,5 @@ func _ready():
 
 
 func _on_Area_body_entered(body):
-	if body is Actor:
+	if body is GroundActor:
 		emit_signal("sig_finished")

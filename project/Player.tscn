@@ -78,7 +78,7 @@ proximity_fade_enable = false
 distance_fade_mode = 0
 _sections_unfolded = [ "Albedo", "Vertex Color" ]
 
-[node name="Player" type="Actor"]
+[node name="Player" type="GroundActor"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0 )
 input_ray_pickable = true
 input_capture_on_drag = false
