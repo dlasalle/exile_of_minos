@@ -106,8 +106,6 @@ adjustment_saturation = 1.0
 _sections_unfolded = [ "Ambient Light", "Background", "background_sky" ]
 
 [node name="Desert" instance=ExtResource( 1 )]
-ceiling_id = 1
-has_ceiling = false
 width = 8
 length = 8
 player_spawn_height = 50

@@ -1,3 +1,4 @@
+# Copyright Dominique LaSalle <dominique@solidlake.com>, 2018-2020
 extends Control
 
 export (int) var quantity = 0

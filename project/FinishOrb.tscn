@@ -121,7 +121,7 @@ script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( -0.298515, 0, 0.954405, 0, 1, 0, -0.954405, 0, -0.298515, 0, 0.166711, 0 )
+transform = Transform( 0.405468, 0, 0.914109, 0, 1, 0, -0.914109, 0, 0.405468, 0, 0.0907495, 0 )
 layers = 1
 material_override = null
 cast_shadow = 1

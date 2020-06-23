@@ -1,3 +1,4 @@
+# Copyright Dominique LaSalle <dominique@solidlake.com>, 2018-2020
 extends Control
 
 signal sig_game_start
